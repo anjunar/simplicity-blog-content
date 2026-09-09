@@ -1,0 +1,3 @@
+locale: en
+title: Transactions Without Container Magic
+teaser: One filter, two calls — and the HTTP response decides between commit and rollback.

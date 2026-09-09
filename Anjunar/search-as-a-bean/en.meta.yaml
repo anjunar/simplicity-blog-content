@@ -1,0 +1,3 @@
+locale: en
+title: Search as a Bean
+teaser: A search criterion is one field plus one class. The controller stays untouched.

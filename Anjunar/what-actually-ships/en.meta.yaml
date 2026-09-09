@@ -1,0 +1,3 @@
+locale: en
+title: What Actually Ships
+teaser: appPackage produces a directory, a start script, and nothing else.

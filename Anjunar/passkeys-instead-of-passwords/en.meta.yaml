@@ -1,0 +1,3 @@
+locale: en
+title: Passkeys Instead of Passwords
+teaser: WebAuthn in detail — what the server stores and what it never learns.

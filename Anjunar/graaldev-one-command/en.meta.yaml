@@ -1,0 +1,3 @@
+locale: en
+title: One Command for the Whole Development Mode
+teaser: Vite, the SSR bundle watcher and the JVM start together and replace themselves while running.

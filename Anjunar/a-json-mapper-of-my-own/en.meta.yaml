@@ -1,0 +1,3 @@
+locale: en
+title: A JSON Mapper of My Own
+teaser: Why Jackson alone is not enough when JSON meets managed entities.

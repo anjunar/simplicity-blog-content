@@ -1,0 +1,3 @@
+locale: en
+title: Server-Side Rendering Inside the JVM
+teaser: GraalJS runs the same UI bundle as the browser — with no Node in production.
