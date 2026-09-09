@@ -1,0 +1,3 @@
+locale: de
+title: Ein Kommando für den ganzen Entwicklungsmodus
+teaser: Vite, SSR-Bundle-Watcher und JVM starten zusammen und tauschen sich im Betrieb selbst aus.

@@ -1,0 +1,3 @@
+locale: de
+title: Ein Build für zwei Sprachen
+teaser: Wie ein sbt-Monorepo Scala 3, TypeScript und einen JVM-Server zusammenhält.

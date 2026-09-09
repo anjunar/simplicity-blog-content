@@ -1,0 +1,3 @@
+locale: de
+title: Ein Dokumentbaum in der Datenbank
+teaser: Warum der Artikeltext als Lexical-Struktur gespeichert wird und nicht als HTML.

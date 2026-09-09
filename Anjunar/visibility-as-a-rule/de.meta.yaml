@@ -1,0 +1,3 @@
+locale: de
+title: Sichtbarkeit als Regel
+teaser: Wer welches Feld sehen darf, steht am Feld — nicht in einem if im Controller.

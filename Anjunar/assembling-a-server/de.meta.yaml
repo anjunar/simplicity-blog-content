@@ -1,0 +1,3 @@
+locale: de
+title: Einen Server selbst zusammenstecken
+teaser: Wie aus Undertow, RESTEasy und Weld ohne Applikationsserver eine laufende Anwendung wird.

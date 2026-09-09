@@ -1,0 +1,3 @@
+locale: de
+title: Serverseitiges Rendering im JVM-Prozess
+teaser: GraalJS führt dasselbe UI-Bundle aus wie der Browser — ohne Node im Betrieb.
