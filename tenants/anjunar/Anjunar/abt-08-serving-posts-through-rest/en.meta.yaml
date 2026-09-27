@@ -1,0 +1,3 @@
+locale: en
+title: Serving Posts through REST
+teaser: Turn the BlogPost model into a public API. Use entity graphs, the JSON mapper, and Data/Table responses to serve published lists and details, then verify the contract through real HTTP requests.

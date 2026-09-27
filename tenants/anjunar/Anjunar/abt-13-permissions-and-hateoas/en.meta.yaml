@@ -1,0 +1,3 @@
+locale: en
+title: Permissions and HATEOAS
+teaser: Enforce endpoint, object and field permissions, then let an editorial interface follow the actions offered by each response.

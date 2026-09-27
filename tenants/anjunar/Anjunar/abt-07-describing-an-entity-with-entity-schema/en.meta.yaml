@@ -1,0 +1,3 @@
+locale: en
+title: Describing an Entity with EntitySchema
+teaser: Define one field model for JSON mapping and typed Criteria queries. Cover every BlogPost field, preserve timestamps, and verify that readable fields remain protected from incoming writes.

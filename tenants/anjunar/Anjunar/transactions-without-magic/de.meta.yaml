@@ -1,3 +1,0 @@
-locale: de
-title: Transaktionen ohne Container-Magie
-teaser: Ein Filter, zwei Aufrufe — und die HTTP-Antwort entscheidet über Commit oder Rollback.

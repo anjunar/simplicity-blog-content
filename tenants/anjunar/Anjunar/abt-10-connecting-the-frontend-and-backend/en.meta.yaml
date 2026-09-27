@@ -1,0 +1,3 @@
+locale: en
+title: Connecting the Frontend and Backend
+teaser: Load published posts into Scala.js models, connect route loaders to the REST API, and handle empty lists, failed requests, and navigation without losing the entity contract.

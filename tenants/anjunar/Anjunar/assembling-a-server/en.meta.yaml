@@ -1,3 +1,0 @@
-locale: en
-title: Assembling a Server Yourself
-teaser: How Undertow, RESTEasy and Weld become a running application without an application server.

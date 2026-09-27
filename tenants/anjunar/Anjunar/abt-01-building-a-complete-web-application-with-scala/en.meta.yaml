@@ -1,0 +1,3 @@
+locale: en
+title: Building a Complete Web Application with Scala
+teaser: A practical series that builds a blog with Scala, Scala.js, and PostgreSQL, from an empty repository to a deployed application. Start with the features, the stack, and the path of a request.

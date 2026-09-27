@@ -1,0 +1,3 @@
+locale: en
+title: Our First Domain Model
+teaser: Model BlogPost with a UUID, version, unique slug, and publication rules. Discover entities through CDI, map them to PostgreSQL, and verify validation and optimistic locking.

@@ -1,0 +1,3 @@
+locale: en
+title: Evolving the Data Model
+teaser: Adopt an existing PostgreSQL schema with Hibernate DDL Manager, give tables and columns stable identities, and add an optional summary while preserving posts and publication rules.

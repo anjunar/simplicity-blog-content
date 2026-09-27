@@ -1,0 +1,3 @@
+locale: en
+title: Applying Changes Safely
+teaser: Prepare entity changes before mutation, enforce current versions, validate the complete result and return useful errors without losing atomicity.

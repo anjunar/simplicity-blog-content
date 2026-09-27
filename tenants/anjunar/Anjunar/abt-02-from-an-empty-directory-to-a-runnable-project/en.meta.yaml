@@ -1,0 +1,3 @@
+locale: en
+title: From an Empty Directory to a Runnable Project
+teaser: Create the first working version of our Scala blog. Set up the sbt build, connect Undertow, RESTEasy, and CDI, then verify the HTTP endpoint with a real integration test.

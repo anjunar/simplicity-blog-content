@@ -1,0 +1,3 @@
+locale: en
+title: Understanding Database Access and Transactions
+teaser: Connect PostgreSQL, Hibernate, Agroal, and Narayana. Keep one persistence context through response serialization, then verify commit and rollback with real database tests.

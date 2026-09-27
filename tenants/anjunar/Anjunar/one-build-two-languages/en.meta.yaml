@@ -1,3 +1,0 @@
-locale: en
-title: One Build for Two Languages
-teaser: How an sbt monorepo holds Scala 3, TypeScript and a JVM server together.

@@ -1,0 +1,3 @@
+locale: en
+title: Starting an HTTP Server with Jakarta Components
+teaser: Connect Undertow, RESTEasy, and Weld through CDI discovery. Add a liveness endpoint, follow a request through its scopes, and verify resource registration and cleanup with real HTTP tests.

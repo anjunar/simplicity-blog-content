@@ -1,0 +1,3 @@
+locale: en
+title: Building the First Interface with Scala.js
+teaser: Build a readable journal with the Scala.js UI component DSL. Bind properties, conditions, and lists, serve the page through Undertow, and verify keyboard controls and mobile layout in a real browser.

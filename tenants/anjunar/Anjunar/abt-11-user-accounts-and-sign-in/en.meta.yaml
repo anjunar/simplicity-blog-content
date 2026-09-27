@@ -1,0 +1,3 @@
+locale: en
+title: User Accounts and Sign-In
+teaser: Create the first administrator and wire Soteria into Undertow for password sign-in, protected sessions, and a Scala.js account form.
