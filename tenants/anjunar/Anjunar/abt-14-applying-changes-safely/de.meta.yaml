@@ -1,0 +1,3 @@
+locale: de
+title: Änderungen sicher anwenden
+teaser: Änderungen an Entitäten vor der Mutation vorbereiten, aktuelle Versionen erzwingen, das vollständige Ergebnis validieren und hilfreiche Fehler zurückgeben, ohne die Atomarität zu verlieren.

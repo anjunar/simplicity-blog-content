@@ -1,0 +1,3 @@
+locale: de
+title: Artikel über REST bereitstellen
+teaser: Das BlogPost-Modell als öffentliche API anbieten. Mit Entity-Graphen, JSON-Mapper und Data/Table-Antworten veröffentlichte Listen und Details ausgeben und den Vertrag durch echte HTTP-Anfragen prüfen.

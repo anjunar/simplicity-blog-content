@@ -1,0 +1,3 @@
+locale: de
+title: Unser erstes Domänenmodell
+teaser: BlogPost mit UUID, Version, eindeutigem Slug und Veröffentlichungsregeln modellieren. Entitäten über CDI finden, in PostgreSQL abbilden und Validierung sowie optimistisches Locking prüfen.

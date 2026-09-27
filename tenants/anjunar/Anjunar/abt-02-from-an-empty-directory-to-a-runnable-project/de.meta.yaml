@@ -1,0 +1,3 @@
+locale: de
+title: Vom leeren Verzeichnis zum lauffähigen Projekt
+teaser: Wir erstellen die erste funktionierende Version unseres Scala-Blogs: sbt-Build einrichten, Undertow, RESTEasy und CDI verbinden und den HTTP-Endpunkt mit einem echten Integrationstest prüfen.

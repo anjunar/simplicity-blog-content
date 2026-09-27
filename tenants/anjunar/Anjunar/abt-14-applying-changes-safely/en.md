@@ -2,14 +2,13 @@
 
 The editorial workspace can publish a post. Now it needs to save the post itself.
 
-The tempting implementation is short: read JSON, assign the fields, and flush.
-It also leaves several questions unanswered. Did we check access before changing
-the managed entity? Did the user edit the version we still have? What happens
-when the title is valid but the summary is not?
+Saving a post means more than assigning JSON fields. We need to check access
+before changing the managed entity, reject edits based on an old version, and
+roll back the whole request if any submitted value is invalid.
 
 This chapter adds draft creation and partial edits through PreparedChange.
 We will follow the whole write: prepare the input, inspect the original entity,
-authorize the operation, apply once, validate, and return the committed result.
+authorize the operation, apply and validate through the mapper, and return the committed result.
 
 ## Start from chapter 13
 
@@ -22,10 +21,10 @@ git switch --detach 37f2a3e6a7d440be4bbc99730bc430915f1bdaa4
 The completed source for this chapter is:
 
 ```text
-git switch --detach CHAPTER_14_SOURCE
+git switch --detach bb212a133dc20f9647ead13d5347be42e5829592
 ```
 
-The [companion guide](https://github.com/anjunar/anjunar-blog-example/blob/CHAPTER_14_SOURCE/docs/applying-changes-safely.md)
+The [companion guide](https://github.com/anjunar/anjunar-blog-example/blob/bb212a133dc20f9647ead13d5347be42e5829592/docs/applying-changes-safely.md)
 covers setup and the precise request contract. Keep the development database,
 administrator and local cookie settings from the previous chapter. There are
 no new database objects; migrating the existing database reports AlreadyApplied
@@ -73,7 +72,7 @@ Omitted fields stay unchanged. A supplied null clears optional summary; it canno
 clear required title or content. This is our API's partial entity format, not
 JSON Patch or JSON Merge Patch. PATCH provides the HTTP operation for partial
 changes, and the request must succeed or fail atomically.
-[RFC 5789](https://www.rfc-editor.org/rfc/rfc5789.html)
+See [RFC 5789](https://www.rfc-editor.org/rfc/rfc5789.html).
 
 ## Prepare before applying
 
@@ -91,12 +90,12 @@ In PreparedChanges.scala, the actual preparation call is:
 ```scala
     JsonMapper.prepare(json, post, TypeResolver.resolve(classOf[BlogPost]),
       manager.getEntityGraph("BlogPost.detail"), noReferences,
-      [T] => (clazz: Class[T]) => RuntimeContext.bean(clazz), validation.validator)
+      [T] => (clazz: Class[T]) => RuntimeContext.bean(clazz), validator)
 ```
 
 This belongs inside the request-scoped PreparedChanges bean. JsonMapper comes
 from com.anjunar.json.mapper; TypeResolver comes from com.anjunar.scala.universe.
-The bean injects EntityManager and PostValidation. RuntimeContext resolves the
+The bean injects EntityManager and Validator. RuntimeContext resolves the
 field rules through CDI, just as it did during reads in chapter 13.
 
 The graph selects the post contract. The rules decide whether a field is writable.
@@ -120,7 +119,6 @@ against the existing, managed post. The controller can therefore declare:
   def update(@PathParam("id") change: PreparedChange[BlogPost]): Data[BlogPost] = {
     if (!access.canEdit(change.getEntity())) throw new ForbiddenException()
     val post = change.applyChanges()
-    validation.requireValid(post)
     requireFreeSlug(post)
     manager.flush()
     result(post)
@@ -132,7 +130,7 @@ com.anjunar.json.mapper. PATCH, Path, Consumes, PathParam and ForbiddenException
 come from jakarta.ws.rs; MediaType comes from jakarta.ws.rs.core.
 
 The first line of the method checks the original entity. Only the next line
-applies incoming values. The reader and converter do not make that authorization
+applies and validates incoming values through the mapper. The reader and converter do not make that authorization
 decision for the controller.
 
 The providers deliberately support PreparedChange[BlogPost] at this checkpoint.
@@ -187,38 +185,52 @@ jakarta.ws.rs. The preceding code parses the URL's UUID.
 The second writer waits, then compares its submitted version with the current
 row. Our concurrent test gets one 200 and one 409. Hibernate's @Version remains
 part of the entity contract; we have added an explicit required version at the
-HTTP boundary. Pessimistic locking holds the database lock for the transaction.
-[Jakarta Persistence](https://jakarta.ee/specifications/persistence/3.2/jakarta-persistence-spec-3.2)
+HTTP boundary. Pessimistic locking holds the database lock for the transaction,
+as specified by [Jakarta Persistence](https://jakarta.ee/specifications/persistence/3.2/jakarta-persistence-spec-3.2).
 
 A no-op does not force a new version. An actual edit returns Hibernate's next
 version. Publication also advances it, so an edit based on the pre-publication
 version is stale.
 
-## Validate fields and the complete result
+## Let the JSON mapper validate the input
 
-The mapper checks submitted field values while applying the change. That is
-necessary, but it is not the whole validation story.
+Validation is already part of applyChanges. The mapper calls
+Validator.validateValue for supplied properties before assigning valid values.
+It collects constraint violations into ErrorRequestException with field paths.
+The controller does not call validate again.
 
-A creation request can omit title entirely. There is then no submitted title
-value for property binding to validate. A partial edit can also leave every
-individual value valid while breaking a rule that spans several fields.
-
-PostValidation therefore validates the completed entity:
+PreparedChanges injects a Validator and passes it to JsonMapper.prepare. The
+following ValidationProducer.scala owns its factory and exposes the validator
+through CDI:
 
 ```scala
-  def requireValid(post: BlogPost): Unit = {
-    val violations = validator.validate(post)
-    if (!violations.isEmpty) throw new ConstraintViolationException(violations)
-  }
+package com.anjunar.blog
+
+import jakarta.annotation.{PostConstruct, PreDestroy}
+import jakarta.enterprise.context.ApplicationScoped
+import jakarta.enterprise.inject.Produces
+import jakarta.validation.{Validation, Validator, ValidatorFactory}
+
+@ApplicationScoped
+class ValidationProducer {
+  private var factory: ValidatorFactory = null
+  @PostConstruct def initialize(): Unit = factory = Validation.buildDefaultValidatorFactory()
+
+  @Produces def validator: Validator = factory.getValidator
+
+  @PreDestroy def close(): Unit = if (factory != null) factory.close()
+}
 ```
 
-This method is in PostValidation.scala. The application-scoped bean owns and
-closes a ValidatorFactory; ConstraintViolationException is imported from
-jakarta.validation.
+This bean supplies the mapper's dependency and closes its factory on shutdown.
+It contains no post-specific validation logic.
 
-For our model, a draft may have empty content. A published post may not. If an
-administrator clears the content of a published post, the full entity check
-rejects it even though an empty string passes the content field's size constraint.
+The mapper checks submitted values. Hibernate also retains the CALLBACK validation
+configured in the persistence chapter: before an insert or update, it checks the
+complete entity. That catches an omitted required title during creation and the
+publication invariant when an edit clears a published post's content. Those
+ConstraintViolationException failures reach the same problem-response mapper.
+The existing request transaction rolls back either kind of validation failure.
 
 The field rules from chapter 13 still apply. Title, slug, content and summary
 are writable for an administrator. Status and publishedAt remain read-only to
@@ -262,7 +274,7 @@ summary is discovered. The managed object has changed in memory. Letting that
 exception escape is essential: the request must roll back.
 
 Our existing TransactionBoundary still controls the lifetime. The controller
-validates and flushes, the writer serializes the response into a buffer, and
+invokes the mapper and flushes, the writer serializes the response into a buffer, and
 the transaction commits before that successful body is sent. If validation,
 serialization or commit fails, the changes are rolled back.
 
@@ -283,7 +295,7 @@ and start with a fresh one.
 
 The incoming body is untrusted input even for an authenticated caller.
 
-RequestJson reads at most 1 MiB, accepts valid UTF-8, rejects duplicate object
+RequestJson accepts at most 1 MiB, accepts valid UTF-8, rejects duplicate object
 keys and limits nesting to 32 levels. Jackson Core supplies streaming token
 parsing; it was already a dependency of json-mapper and is now declared directly
 because the application uses it.
@@ -360,7 +372,7 @@ difference between a compact public list and an editable draft detail.
 ## Run the exact example
 
 The repository contains
-[docs/examples/post-changes.js](https://github.com/anjunar/anjunar-blog-example/blob/CHAPTER_14_SOURCE/docs/examples/post-changes.js).
+[docs/examples/post-changes.js](https://github.com/anjunar/anjunar-blog-example/blob/bb212a133dc20f9647ead13d5347be42e5829592/docs/examples/post-changes.js).
 
 After signing in as the development administrator, paste that file into the
 browser console. It obtains the session, follows the editorial entry, creates

@@ -1,0 +1,3 @@
+locale: de
+title: Benutzerkonten und Anmeldung
+teaser: Den ersten Administrator anlegen und Soteria in Undertow integrieren: Passwortanmeldung, geschützte Sitzungen und ein Kontoformular mit Scala.js.

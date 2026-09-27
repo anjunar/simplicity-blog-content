@@ -1,0 +1,3 @@
+locale: de
+title: Das Datenmodell weiterentwickeln
+teaser: Ein bestehendes PostgreSQL-Schema mit Hibernate DDL Manager übernehmen, Tabellen und Spalten stabile Identitäten geben und eine optionale Zusammenfassung ergänzen, ohne Artikel oder Veröffentlichungsregeln zu verlieren.

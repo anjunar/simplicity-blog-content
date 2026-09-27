@@ -1,0 +1,3 @@
+locale: de
+title: Eine vollständige Webanwendung mit Scala entwickeln
+teaser: Eine praxisnahe Reihe, in der aus einem leeren Repository ein bereitgestellter Blog mit Scala, Scala.js und PostgreSQL entsteht. Zum Einstieg geht es um die Funktionen, den Technologie-Stack und den Weg einer Anfrage.

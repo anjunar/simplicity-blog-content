@@ -1,0 +1,3 @@
+locale: de
+title: Berechtigungen und HATEOAS
+teaser: Berechtigungen für Endpunkte, Objekte und Felder durchsetzen. Die Redaktionsoberfläche folgt den Aktionen, die jede Antwort anbietet.

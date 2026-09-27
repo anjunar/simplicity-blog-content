@@ -1,0 +1,3 @@
+locale: de
+title: Die erste Oberfläche mit Scala.js entwickeln
+teaser: Mit der Komponenten-DSL von Scala.js UI ein lesbares Journal bauen. Properties, Bedingungen und Listen binden, die Seite über Undertow ausliefern und Tastaturbedienung sowie mobiles Layout in einem echten Browser prüfen.

@@ -1,0 +1,3 @@
+locale: de
+title: Datenbankzugriff und Transaktionen verstehen
+teaser: PostgreSQL, Hibernate, Agroal und Narayana verbinden. Einen Persistence Context bis zur Serialisierung der Antwort offen halten und Commit sowie Rollback mit echten Datenbanktests prüfen.

@@ -1,0 +1,3 @@
+locale: de
+title: Einen HTTP-Server mit Jakarta-Komponenten starten
+teaser: Undertow, RESTEasy und Weld über die CDI-Erkennung verbinden, einen Endpunkt für die Erreichbarkeit ergänzen, den Weg einer Anfrage durch ihre Gültigkeitsbereiche verfolgen und Registrierung sowie Aufräumen mit echten HTTP-Tests prüfen.

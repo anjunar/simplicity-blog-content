@@ -1,0 +1,3 @@
+locale: en
+title: Building a Form from End to End
+teaser: Bind the post model directly to a form, show field errors and preserve newer edits when saves or conflicts arrive.

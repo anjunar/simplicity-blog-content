@@ -1,0 +1,3 @@
+locale: de
+title: Eine Entität mit EntitySchema beschreiben
+teaser: Ein gemeinsames Feldmodell für JSON-Mapping und typisierte Criteria-Abfragen definieren. Alle BlogPost-Felder abdecken, Zeitstempel erhalten und prüfen, dass lesbare Felder vor eingehenden Änderungen geschützt bleiben.
