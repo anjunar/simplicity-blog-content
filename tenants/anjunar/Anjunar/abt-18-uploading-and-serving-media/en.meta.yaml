@@ -1,0 +1,3 @@
+locale: en
+title: Uploading and Serving Media
+teaser: Validate image uploads, attach them to posts by reference, authorize each image request by post visibility, and safely clean up abandoned uploads.

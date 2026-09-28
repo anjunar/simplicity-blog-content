@@ -1,0 +1,3 @@
+locale: en
+title: Integrating a Post Editor
+teaser: Add a Markdown editor to the post form, secure embedded image uploads and references, and share one rendering path between preview and public reading.

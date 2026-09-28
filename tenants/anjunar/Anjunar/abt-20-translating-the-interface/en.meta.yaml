@@ -1,0 +1,3 @@
+locale: en
+title: Translating the Interface
+teaser: Add English and German routes, a message catalog and a language switch while preserving form state and editorial content.

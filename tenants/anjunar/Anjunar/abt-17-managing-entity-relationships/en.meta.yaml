@@ -1,0 +1,3 @@
+locale: en
+title: Managing Entity Relationships
+teaser: Model authors and tags as shared entities, accept safe ID-only references, and update relationships deliberately across the API and editor form.
