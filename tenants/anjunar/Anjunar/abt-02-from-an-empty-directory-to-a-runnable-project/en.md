@@ -68,7 +68,7 @@ There is one backend module. It lives under `application/backend`, leaving room 
 
 First, pin sbt itself:
 
-**File: `project/build.properties`**
+**File:** `project/build.properties`
 
 ```properties
 sbt.version=2.0.9
@@ -76,7 +76,7 @@ sbt.version=2.0.9
 
 Give the local sbt process an explicit memory budget and use UTF-8:
 
-**File: `.jvmopts`**
+**File:** `.jvmopts`
 
 ```text
 -Xms128m
@@ -89,7 +89,7 @@ These options configure the build JVM. They are not a production server configur
 
 Now define the module and its dependencies:
 
-**File: `build.sbt`**
+**File:** `build.sbt`
 
 ```scala
 ThisBuild / organization := "com.anjunar"
@@ -136,7 +136,7 @@ The application and tests run in separate JVM processes. This keeps the embedded
 
 The application needs an object with a `main` method:
 
-**File: `application/backend/src/main/scala/com/anjunar/blog/ApplicationMain.scala`**
+**File:** `application/backend/src/main/scala/com/anjunar/blog/ApplicationMain.scala`
 
 ```scala
 package com.anjunar.blog
@@ -197,7 +197,7 @@ The default port is 8080. We can override it with `BLOG_PORT`.
 
 The REST application defines the common URL prefix and the resource classes:
 
-**File: `application/backend/src/main/scala/com/anjunar/blog/ServerApplication.scala`**
+**File:** `application/backend/src/main/scala/com/anjunar/blog/ServerApplication.scala`
 
 ```scala
 package com.anjunar.blog
@@ -220,7 +220,7 @@ For this first module, the resource list is explicit. The prefix `/service` appl
 
 The resource will obtain its response from a small service:
 
-**File: `application/backend/src/main/scala/com/anjunar/blog/GreetingService.scala`**
+**File:** `application/backend/src/main/scala/com/anjunar/blog/GreetingService.scala`
 
 ```scala
 package com.anjunar.blog
@@ -239,7 +239,7 @@ class GreetingService {
 
 Now add the endpoint:
 
-**File: `application/backend/src/main/scala/com/anjunar/blog/HelloResource.scala`**
+**File:** `application/backend/src/main/scala/com/anjunar/blog/HelloResource.scala`
 
 ```scala
 package com.anjunar.blog
@@ -270,7 +270,7 @@ Weld injects `GreetingService` before the request method uses it. The greeting i
 
 Finally, enable CDI bean discovery:
 
-**File: `application/backend/src/main/resources/META-INF/beans.xml`**
+**File:** `application/backend/src/main/resources/META-INF/beans.xml`
 
 ```xml
 <?xml version="1.0" encoding="UTF-8"?>
@@ -286,7 +286,7 @@ With `bean-discovery-mode="annotated"`, CDI discovers beans with a bean-defining
 
 The repository should contain the sources and build definition. Add these ignore rules:
 
-**File: `.gitignore`**
+**File:** `.gitignore`
 
 ```gitignore
 target/
@@ -306,7 +306,7 @@ The `target/` rule also covers generated output inside subdirectories. Local app
 
 Use consistent line endings:
 
-**File: `.gitattributes`**
+**File:** `.gitattributes`
 
 ```gitattributes
 * text=auto eol=lf
@@ -319,7 +319,7 @@ You can now initialize a Git repository with `git init` if you are building the 
 
 Compiling the classes will catch type errors. To verify the connection between Undertow, RESTEasy, and Weld, we also need to make a real request.
 
-**File: `application/backend/src/test/scala/com/anjunar/blog/ServerIntegrationSpec.scala`**
+**File:** `application/backend/src/test/scala/com/anjunar/blog/ServerIntegrationSpec.scala`
 
 ```scala
 package com.anjunar.blog
