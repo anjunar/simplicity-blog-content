@@ -1,0 +1,3 @@
+locale: de
+title: Suchen, filtern und paginieren
+teaser: Mit HibernateSearch und CDI-Providern typisierte Filter, kompakte Listenprojektionen und URL-gesteuerte Paginierung entwickeln, die Neuladen und Browserverlauf übersteht.
