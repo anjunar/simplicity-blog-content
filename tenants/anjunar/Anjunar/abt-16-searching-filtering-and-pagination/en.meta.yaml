@@ -1,0 +1,3 @@
+locale: en
+title: Searching, Filtering and Pagination
+teaser: Use HibernateSearch and CDI providers for typed filters, compact projections and URL-driven pagination that survives reloads and browser history.
