@@ -68,7 +68,7 @@ Es gibt ein Backend-Modul unter `application/backend`. Die Struktur lässt Platz
 
 Zuerst legen wir die sbt-Version fest:
 
-**Datei: `project/build.properties`**
+**Datei:** `project/build.properties`
 
 ```properties
 sbt.version=2.0.9
@@ -76,7 +76,7 @@ sbt.version=2.0.9
 
 Geben Sie dem lokalen sbt-Prozess ein explizites Speicherbudget und verwenden Sie UTF-8:
 
-**Datei: `.jvmopts`**
+**Datei:** `.jvmopts`
 
 ```text
 -Xms128m
@@ -89,7 +89,7 @@ Diese Optionen konfigurieren die Build JVM. Sie sind keine Produktionsserverkonf
 
 Definieren Sie nun das Modul und seine Abhängigkeiten:
 
-**Datei: `build.sbt`**
+**Datei:** `build.sbt`
 
 ```scala
 ThisBuild / organization := "com.anjunar"
@@ -136,7 +136,7 @@ Anwendung und Tests laufen in separaten JVM-Prozessen. Dadurch bleiben Klassenla
 
 Die Anwendung benötigt ein Objekt mit einer `main`-Methode:
 
-**Datei: `application/backend/src/main/scala/com/anjunar/blog/ApplicationMain.scala`**
+**Datei:** `application/backend/src/main/scala/com/anjunar/blog/ApplicationMain.scala`
 
 ```scala
 package com.anjunar.blog
@@ -197,7 +197,7 @@ Der Standardport ist 8080. Wir können es mit `BLOG_PORT` überschreiben.
 
 Die REST-Anwendung definiert das allgemeine URL-Präfix und die Ressourcenklassen:
 
-**Datei: `application/backend/src/main/scala/com/anjunar/blog/ServerApplication.scala`**
+**Datei:** `application/backend/src/main/scala/com/anjunar/blog/ServerApplication.scala`
 
 ```scala
 package com.anjunar.blog
@@ -220,7 +220,7 @@ Für dieses erste Modul ist die Ressourcenliste explizit. Das Präfix `/service`
 
 Die Ressource erhält ihre Antwort von einem kleinen Dienst:
 
-**Datei: `application/backend/src/main/scala/com/anjunar/blog/GreetingService.scala`**
+**Datei:** `application/backend/src/main/scala/com/anjunar/blog/GreetingService.scala`
 
 ```scala
 package com.anjunar.blog
@@ -239,7 +239,7 @@ class GreetingService {
 
 Fügen Sie nun den Endpunkt hinzu:
 
-**Datei: `application/backend/src/main/scala/com/anjunar/blog/HelloResource.scala`**
+**Datei:** `application/backend/src/main/scala/com/anjunar/blog/HelloResource.scala`
 
 ```scala
 package com.anjunar.blog
@@ -270,7 +270,7 @@ Weld injiziert `GreetingService`, bevor die Request-Methode den Dienst verwendet
 
 Schließlich aktivieren wir die CDI-Bean-Erkennung:
 
-**Datei: `application/backend/src/main/resources/META-INF/beans.xml`**
+**Datei:** `application/backend/src/main/resources/META-INF/beans.xml`
 
 ```xml
 <?xml version="1.0" encoding="UTF-8"?>
@@ -286,7 +286,7 @@ Mit `bean-discovery-mode="annotated"` entdeckt CDI Beans mit einer Bean-definier
 
 Das Repository sollte die Quellen und die Builddefinition enthalten. Fügen Sie diese Ignorierregeln hinzu:
 
-**Datei: `.gitignore`**
+**Datei:** `.gitignore`
 
 ```gitignore
 target/
@@ -306,7 +306,7 @@ Die `target/`-Regel deckt auch die generierte Ausgabe in Unterverzeichnissen ab.
 
 Verwenden Sie konsistente Zeilenenden:
 
-**Datei: `.gitattributes`**
+**Datei:** `.gitattributes`
 
 ```gitattributes
 * text=auto eol=lf
@@ -319,7 +319,7 @@ Sie können nun ein Git-Repository mit `git init` initialisieren, wenn Sie das B
 
 Beim Kompilieren fallen Typfehler auf. Um das Zusammenspiel von Undertow, RESTEasy und Weld zu prüfen, senden wir außerdem eine echte Anfrage.
 
-**Datei: `application/backend/src/test/scala/com/anjunar/blog/ServerIntegrationSpec.scala`**
+**Datei:** `application/backend/src/test/scala/com/anjunar/blog/ServerIntegrationSpec.scala`
 
 ```scala
 package com.anjunar.blog
