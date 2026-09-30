@@ -1,4 +1,4 @@
-In dieser Reihe entwickeln wir aus einem leeren Repository einen Blog, der schließlich unter einer eigenen Domain läuft. Auf dem Server und im Browser verwenden wir Scala, für die Datenhaltung PostgreSQL. Serverseitiges Rendering liefert lesbare Seiten, bevor der Browser die Interaktivität übernimmt.
+In dieser Reihe entwickeln wir aus einem leeren Repository einen funktionsfähigen mehrsprachigen Blog mit serverseitig gerenderten öffentlichen Seiten. Auf dem Server und im Browser verwenden wir Scala, für die Datenhaltung PostgreSQL. Serverseitiges Rendering liefert lesbare Seiten, bevor der Browser die Interaktivität übernimmt.
 
 Das begleitende Projekt heißt `anjunar-blog-tutorial`. Jeder Implementierungsartikel erweitert dasselbe Projekt und erklärt, wie sich das Ergebnis starten und überprüfen lässt.
 
@@ -12,7 +12,7 @@ Ein Artikel besitzt einen Titel, eine stabile URL, einen Veröffentlichungsstatu
 
 Oberfläche und Artikel unterstützen Englisch und Deutsch; Englisch ist zunächst die Hauptsprache. Übersetzungen der Oberfläche behandeln wir getrennt von übersetzten Artikeln: Ein übersetzter Speichern-Button und die deutsche Fassung eines Artikels sind unterschiedliche Daten.
 
-Die Anwendung muss über eine Entwicklungssitzung hinaus funktionieren. Dazu brauchen wir Datenbankmigrationen, ein bereitstellbares Paket, HTTPS, Backups und ausreichend Protokollierung, um fehlgeschlagene Anfragen untersuchen zu können.
+Datenbankmigrationen und automatisierte Prüfungen begleiten die Entwicklung, damit jedes Kapitel mit der wachsenden Anwendung ausführbar bleibt.
 
 Die technische Referenz ist Anjunar Stack. Im Tutorial bauen wir eine einzelne Website. Deshalb benötigt ihr Datenmodell weder Tenant-IDs noch einen Tenant-Kontext.
 
@@ -87,7 +87,7 @@ Unser erstes Etappenziel ist klein: den Server lokal starten, einen Artikel in P
 
 Danach bauen wir die Leseroberfläche, verbinden sie mit der API und ergänzen Konten, Berechtigungen und Bearbeitungsfunktionen. Suche, Bilder, strukturierte Inhalte und Übersetzungen erweitern die bereits funktionierende Anwendung.
 
-Anschließend ergänzen wir serverseitiges Rendering und Hydration, vervollständigen die öffentlichen Seiten mit Metadaten und Feeds und paketieren die Anwendung für das Deployment.
+Die letzten vier Kapitel behandeln übersetzte Beiträge (21), serverseitiges Rendering (22), Hydration (23) und öffentliche Seiten mit Metadaten und Feeds (24). Mit Kapitel 24 endet die Reihe. Paketierung, Deployment und Produktionsbetrieb gehören nicht zu ihrem Umfang.
 
 Jeder Implementierungsartikel nennt die geänderten Dateien, zeigt den wichtigen Code und liefert einen Befehl oder eine Anfrage zum Prüfen des Ergebnisses. Veröffentlichte Artikel werden an bestimmte Commits oder Tags gebunden, damit ihre Beispiele auch bei wachsendem Projekt reproduzierbar bleiben.
 

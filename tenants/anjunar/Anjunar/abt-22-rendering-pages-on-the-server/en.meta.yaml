@@ -1,0 +1,3 @@
+locale: en
+title: Rendering Pages on the Server
+teaser: Render the existing Scala.js blog with GraalJS so localized posts arrive as complete HTML with the correct HTTP status.

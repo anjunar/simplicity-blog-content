@@ -1,0 +1,3 @@
+locale: en
+title: Hydrating the Server-Rendered Page
+teaser: Keep the server DOM, reuse its initial public response once and attach interactivity without a second initial data request.

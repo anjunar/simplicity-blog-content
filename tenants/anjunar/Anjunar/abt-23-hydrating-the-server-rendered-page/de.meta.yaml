@@ -1,0 +1,3 @@
+locale: de
+title: Die serverseitig gerenderte Seite hydrieren
+teaser: Den Server-DOM erhalten, seine öffentliche Anfangsantwort einmal wiederverwenden und Interaktivität ohne erneuten Datenabruf aktivieren.

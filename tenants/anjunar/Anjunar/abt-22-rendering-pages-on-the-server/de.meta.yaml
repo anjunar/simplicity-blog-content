@@ -1,0 +1,3 @@
+locale: de
+title: Seiten auf dem Server rendern
+teaser: Den vorhandenen Scala.js-Blog mit GraalJS rendern, damit lokalisierte Beiträge als vollständiges HTML mit passendem HTTP-Status ankommen.

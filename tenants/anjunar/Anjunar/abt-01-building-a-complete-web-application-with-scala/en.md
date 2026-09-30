@@ -1,4 +1,4 @@
-This series builds a blog from an empty repository to an application running on its own domain. We will use Scala on the server and in the browser, PostgreSQL for persistence, and server-side rendering to deliver readable pages before the browser takes over interactivity.
+This series builds a blog from an empty repository to a working multilingual application with server-rendered public pages. We will use Scala on the server and in the browser, PostgreSQL for persistence, and server-side rendering to deliver readable pages before the browser takes over interactivity.
 
 The companion project is called `anjunar-blog-tutorial`. Each implementation article will extend that same project and explain how to run and check the result.
 
@@ -12,7 +12,7 @@ A post will have a title, a stable URL, a publication state, and content contain
 
 The interface and posts will support English and German, with English as the primary language. We will handle interface translations separately from translated articles: a translated Save button and a German version of a post are different kinds of data.
 
-The application will also need to survive beyond a development session. That means database migrations, a deployable package, HTTPS, backups, and enough logging to investigate a failed request.
+Database migrations and automated checks will accompany feature development so each chapter remains runnable as the application grows.
 
 The technical reference is Anjunar Stack. The tutorial will build a single site, so its data model and request handling will have no tenant IDs or tenant context.
 
@@ -87,7 +87,7 @@ Our first milestone is small: start the server locally, store a post in PostgreS
 
 From there, we will build the reader's interface, connect it to the API, and add accounts, permissions, and editing. Search, images, structured content, and translations will extend that working application.
 
-We will then add server-side rendering and hydration, complete the public pages with metadata and discovery feeds, and package the application for deployment.
+The final four chapters cover translated posts (21), server-side rendering (22), hydration (23), and public pages with metadata and discovery feeds (24). Chapter 24 concludes the series. Packaging, deployment, and production operations are outside its scope.
 
 Each implementation article will identify the files being changed, show the relevant code, and provide a command or request that demonstrates the result. Published articles will be tied to specific commits or tags so their examples remain reproducible as the project grows.
 
